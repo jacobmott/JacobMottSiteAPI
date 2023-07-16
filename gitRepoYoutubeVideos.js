@@ -68,13 +68,14 @@ exports.handler = async (event) => {
     
     let responseFinal = {'list': [] };
     
-    const regexp = /(https:)(.*?)\.(png|jpg|jpeg|gif)/g;
+    const regexp = /^(https:\/\/youtu\.be\/.*?)(\r\n|\r|\n)/gm;
     const array = [...str.matchAll(regexp)];
     for (const arr of array) {
-      let url = arr[1]+arr[2]+'.'+arr[3];
+      let url = arr[1];
       let myUrl = {'url': url};
       responseFinal['list'].push(myUrl);
-    } 
+    }
+    
     
     
     response = {
